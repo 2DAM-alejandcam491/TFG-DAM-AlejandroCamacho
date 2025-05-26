@@ -1,13 +1,11 @@
 using SQLite4Unity3d;
 
+[Table("Progreso")]
 public class Progreso
 {
-    [PrimaryKey, AutoIncrement] // ID -> clave primaria e autoincrementable
-    public int Id { get; set; }
-    
-    public int IdUsuario { get; set; }  // Foreing Key
-    
-    public int NivelesCompletados { get; set; }
-    
-    public int Puntuacion { get; set; }
+    [PrimaryKey, AutoIncrement]
+    public int id_progreso { get; set; }
+    public int id_usuario { get; set; }
+    public int niveles_completados { get; set; }
+    public int puntuacion { get; set; }
 }
