@@ -49,17 +49,25 @@ public class Chest : MonoBehaviour
 
     private IEnumerator DesaparecerDespues()
     {
+        yield return new WaitForSeconds(1f);
+
         if (imagenTesoro != null)
         {
             imagenTesoro.SetActive(true);
+
+            var sr = imagenTesoro.GetComponent<SpriteRenderer>();
 
             imagenTesoro.transform.DOMoveY(
                 imagenTesoro.transform.position.y + subidaY,
                 duracionSubida
             ).SetEase(Ease.OutQuad);
+
+            // Esperar a que se "asome"
+            yield return new WaitForSeconds(0.6f);
+            sr.maskInteraction = SpriteMaskInteraction.None;
         }
         // Espera la duración de la animación (ajusta a tu duración real)
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(duracionSubida);
         AddTeasureToDB();
         Destroy(gameObject); // o gameObject.SetActive(false);
     }

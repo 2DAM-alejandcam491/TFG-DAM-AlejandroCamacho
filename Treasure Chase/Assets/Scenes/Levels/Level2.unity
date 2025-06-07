@@ -348,7 +348,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 493a4efab8e31254bac10b23052ef16e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -358,7 +358,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!4 &382894067
 Transform:
@@ -2669,6 +2669,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4441611596150796482, guid: 82e7dec6207d0c84697eedf8943e9116, type: 3}
+    - {fileID: 518928034827076305, guid: 82e7dec6207d0c84697eedf8943e9116, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1633864869327531735, guid: 82e7dec6207d0c84697eedf8943e9116, type: 3}
       insertIndex: -1
