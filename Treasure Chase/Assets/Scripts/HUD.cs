@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class HUD : MonoBehaviour
 {
-    //public Sprite spriteVida;
-    //public Sprite spriteNoVida;
+    public Sprite spriteVida;
+    public Sprite spriteNoVida;
     public TextMeshProUGUI puntos;
     public GameObject[] vidas;
 
@@ -43,15 +43,16 @@ public class HUD : MonoBehaviour
             Debug.LogWarning("No se puede actualizar puntos: 'puntos' es null");
         }
     }
-    
-    public void desactivarVida(int indice){
-        //Image spriteController = vidas[indice].GetComponent<Image>();
-        //spriteController.sprite = spriteNoVida;
+
+    public void desactivarVida(int indice)
+    {
+        Image spriteController = vidas[indice].GetComponent<Image>();
+        spriteController.sprite = spriteNoVida;
     }
 
     public void activarVida(int indice){
-        //Image spriteController = vidas[indice].GetComponent<Image>();
-        //spriteController.sprite = spriteVida;
+        Image spriteController = vidas[indice].GetComponent<Image>();
+        spriteController.sprite = spriteVida;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

@@ -24,26 +24,39 @@ public class Chest : MonoBehaviour
     public GameObject imagenTesoro;
     private float subidaY = 1.5f; // Distancia hacia arriba
     private float duracionSubida = 1f; // Tiempo de animación
+    public AudioClip chestOpenSound;
+    public AudioClip chestOpenSoundReward;
+    private Vector2 hiddenPosition = new Vector2(9999, 9999);
+    private Vector2 originalPosition;
 
     void Awake()
     {
-        var dbPath = Path.Combine(Application.streamingAssetsPath, "Prueba.db");
-        db = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
+        db = DBManager.Instance.GetSQLiteConnection();
     }
 
     void Start()
     {
         animator = GetComponent<Animator>();
         fadePanel.alpha = 0f;
+
+        RectTransform rt = fadePanel.GetComponent<RectTransform>();
+        originalPosition = rt.anchoredPosition;
+
+        // Al principio, lo dejamos oculto
+        rt.anchoredPosition = hiddenPosition;
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!abierto && other.CompareTag("Player"))
         {
+            ScriptCharacterController.Instance.canGetHit = false;
             abierto = true;
             animator.SetTrigger("Abrir");
             StartCoroutine(DesaparecerDespues());
+            AudioManager.Instance.ReproducirSonido(chestOpenSound, 1);
+            
         }
     }
 
@@ -136,6 +149,10 @@ public class Chest : MonoBehaviour
     {
         Debug.Log("Iniciando fade...");
 
+        RectTransform rt = fadePanel.GetComponent<RectTransform>();
+        rt.anchoredPosition = originalPosition;
+
+        fadePanel.enabled = true;
         fadePanel.DOFade(1f, 2f)
             .SetEase(Ease.Linear)
             .OnComplete(() =>

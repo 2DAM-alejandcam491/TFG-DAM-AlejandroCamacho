@@ -17,9 +17,17 @@ public class DBViewer : MonoBehaviour
     public Button usuariosButton, progresoButton, tesorosButton, tesorosObtenidosButton;
     public Button cerrarSesionbutton;
 
+    public GameObject fitter;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (fitter != null)
+        {
+            Debug.Log("Desactivando Fitter");
+            fitter.GetComponent<ContentSizeFitter>().enabled = false;
+        }
+        
         _connection = DBManager.Instance.Connection;
 
         usuariosButton.onClick.AddListener(VerUsuarios);
@@ -74,6 +82,7 @@ public class DBViewer : MonoBehaviour
             resultado += $"Usuario {to.id_usuario} obtuvo tesoro {to.id_tesoro} en {to.fecha_obtenido}\n";
         }
         displayText.text = resultado;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(fitter.GetComponent<RectTransform>());
     }
 
     public void LogOut()

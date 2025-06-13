@@ -15,7 +15,7 @@ public class DBManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            var dbPath = Path.Combine(Application.streamingAssetsPath, "Prueba.db");
+            var dbPath = Path.Combine(Application.streamingAssetsPath, "DBTreasureChase.db");
             Connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
         }
         else
@@ -26,7 +26,7 @@ public class DBManager : MonoBehaviour
 
     public SQLiteConnection GetSQLiteConnection()
     {
-        var dbPath = Path.Combine(Application.streamingAssetsPath, "Prueba.db");
+        var dbPath = Path.Combine(Application.streamingAssetsPath, "DBTreasureChase.db");
         return (Connection == null) ? new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create) : Connection; 
     }
 

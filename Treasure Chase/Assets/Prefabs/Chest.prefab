@@ -261,6 +261,8 @@ MonoBehaviour:
   id_cofre_tesoro: 1
   fadePanel: {fileID: 0}
   imagenTesoro: {fileID: 518928034827076305}
+  chestOpenSound: {fileID: 8300000, guid: 940ea0403d022c042a2383f6bdd0d69b, type: 3}
+  chestOpenSoundReward: {fileID: 0}
 --- !u!95 &137546776323631217
 Animator:
   serializedVersion: 5

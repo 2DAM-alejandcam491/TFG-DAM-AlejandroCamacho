@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CurrentPLayerDB.Instance.CurrentPlayer != null) puntosTotales = DBManager.Instance.ObtenerPuntuacion();
+        if (CurrentPLayerDB.Instance.CurrentPlayer != null  && DBManager.Instance != null) puntosTotales = DBManager.Instance.ObtenerPuntuacion();
     }
 
     public void SumarPuntos(int puntosASumar){
@@ -38,17 +38,22 @@ public class GameManager : MonoBehaviour
         hud.ActualizarPuntos(puntosTotales);
     }
 
-    // public void perderVida(){
-    //     vidas--;
-    //     if (vidas == 0){
-    //         //Animacion Muerte y Espera
-    //         CharacterController.Instance.coroutineAnimacionMuerte();
-    //         //Reiniciar Level
-    //         SceneManager.LoadScene(0);
-    //     }
-    //     hud.desactivarVida(vidas);
-    //     CharacterController.Instance.coroutineAnimacionRecibirDanio();
-    // }
+    public void PerderVida()
+    {
+        Debug.Log("PerderVida()");
+        vidas--;
+        if (vidas == 0)
+        {
+            //Animacion Muerte y Espera
+            ScriptCharacterController.Instance.CoroutineDieAnimation();
+            //Reiniciar Level
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex
+);
+        }
+        hud.desactivarVida(vidas);
+        ScriptCharacterController.Instance.CoroutieLoseHeartAnimation();
+        Debug.Log("Fin PerderVida()");
+    }
 
     // public void ganarVida(){
     //     if (vidas == 3){

@@ -2,28 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))  ]
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set;}
-    private AudioSource audioSource;
+    public static AudioManager Instance { get; private set; }
+    public AudioSource audioSourceSXF;
 
-    void Awake() 
+    void Awake()
     {
-        if (Instance == null) 
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        } else Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void ReproducirSonido(AudioClip audio, float volume)
     {
-        audioSource = GetComponent<AudioSource>();
-    }
+        if (audioSourceSXF == null)
+        {
+            Debug.LogWarning("AudioSource no inicializado.");
+            return;
+        }
+        if (audio == null)
+        {
+            Debug.LogWarning("AudioClip es null.");
+            return;
+        }
 
-    public void ReproducirSonido(AudioClip audio, float volume){
-        audioSource.PlayOneShot(audio, volume);
+        audioSourceSXF.PlayOneShot(audio, volume);
     }
 }

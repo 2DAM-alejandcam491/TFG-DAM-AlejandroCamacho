@@ -52,7 +52,7 @@ public class Login : MonoBehaviour
                 var progreso = DBManager.Instance.Connection.Table<Progreso>().Where(p => p.id_usuario == id).FirstOrDefault();
                 if (progreso.niveles_completados == 0)
                 {
-                    SceneManager.LoadScene("BaseLevelScene");
+                    SceneManager.LoadScene("Level1");
                 }
                 else
                 {
